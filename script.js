@@ -24,36 +24,56 @@ const determineWinner = (userChoice, computerChoice) => {
     return 'You are in a tie!';
   } else if (userChoice === 'rock') {
     if (computerChoice === 'paper') {
-      return 'Sorry, computer won!';
+      return 'Sorry,  Im the champion!';
     } else {
       return 'Congratulations, you won!';
     }
   } else if (userChoice === 'paper') {
     if (computerChoice === 'scissors') {
-      return 'Sorry, computer won!';
+      return 'Sorry, Im the champion!';
     } else {
       return 'Congratulations, you won!';
     }
   } else if (userChoice === 'scissors') {
     if (computerChoice === 'rock') {
-      return 'Sorry, computer won!';
+      return 'Sorry, Im the champion!';
     } else {
       return 'Congratulations, you won!';
     }
   }
 };
 
-const playGame = userChoice => {
-  const computerChoice = getComputerChoice();
-  const result = determineWinner(userChoice, computerChoice);
+const choiceToImageMap = {
+  rock: 'rock.png',
+  paper: 'paper.png',
+  scissors: 'scissors.png'
+};
 
-  document.getElementById('user-choice').textContent = `You threw: ${userChoice}`;
-  document.getElementById('computer-choice').textContent = `The computer threw: ${computerChoice}`;
+const updateUserChoiceImage = userChoice => {
+  const userChoiceImage = choiceToImageMap[userChoice];
+  document.getElementById('user-choice-img').src = userChoiceImage;
+};
+
+const playGame = userChoice => {
+const computerChoice = getComputerChoice();
+const result = determineWinner(userChoice, computerChoice);
+  
+updateUserChoiceImage(userChoice);
+const computerChoiceImage = choiceToImageMap[computerChoice];
+  document.getElementById('computer-choice-img').src = computerChoiceImage;
+
+  // Update the game result text
   document.getElementById('game-result').textContent = result;
-  
-  
 };
 
 document.getElementById('rock').addEventListener('click', () => playGame('rock'));
 document.getElementById('paper').addEventListener('click', () => playGame('paper'));
 document.getElementById('scissors').addEventListener('click', () => playGame('scissors'));
+
+window.addEventListener('load', () => {
+  const imagePaths = Object.values(choiceToImageMap);
+  for (const path of imagePaths) {
+    const image = new Image();
+    image.src = path;
+  }
+});
