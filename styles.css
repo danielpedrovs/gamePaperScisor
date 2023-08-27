@@ -17,13 +17,11 @@ img {
   padding: 150px;
   border-radius: 5px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-  background-image: url(/images/wood-back.jpg);
+  background-image: url(wood-back.jpg);
 }
 
 h1 {
-  font-size: 100px;
-  margin-top: 10%;
-  margin-bottom: 10%;
+  font-size: 80px;
   color: #D6D6E7;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
